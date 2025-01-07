@@ -6,6 +6,7 @@ import ExpriencePreview from "./preview/ExpriencePreview";
 import { PersonalDetailPreview } from "./preview/PersonalDetailPreview";
 import SkillsPreview from "./preview/SkillsPreview";
 import SummaryPreview from "./preview/SummaryPreview";
+import Loading from "../../../components/ui/Loading"
 
 export const ResumePreview = () => {
   const { resumeInfo, setresumeInfo } = useContext(ResumeInfoContext);
@@ -14,11 +15,18 @@ export const ResumePreview = () => {
       className="shadow-lg border-t-[20px] p-14 h-full "
       style={{ borderColor: resumeInfo?.themeColor }}
     >
-      <PersonalDetailPreview resumeInfo={resumeInfo} />
-      <SummaryPreview resumeInfo={resumeInfo} />
-      <ExpriencePreview resumeInfo={resumeInfo} />
-      <EducationPreview resumeInfo={resumeInfo}/>
-      <SkillsPreview resumeInfo={resumeInfo}/>
+      {resumeInfo != undefined ? (
+        <div>
+          {" "}
+          <PersonalDetailPreview resumeInfo={resumeInfo} />
+          <SummaryPreview resumeInfo={resumeInfo} />
+          <ExpriencePreview resumeInfo={resumeInfo} />
+          <EducationPreview resumeInfo={resumeInfo} />
+          <SkillsPreview resumeInfo={resumeInfo} />
+        </div>
+      ) : (
+        <Loading/>
+      )}
     </div>
   );
 };

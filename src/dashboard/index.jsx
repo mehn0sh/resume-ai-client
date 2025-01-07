@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import GlobalApi from "../../service/GlobalApi";
 import { AddResume } from "./components/AddResume";
 import { ResumeCartItem } from "./components/ResumeCartItem";
-
 const Dashboard = () => {
   const { user } = useUser();
   const [resumeList, setresumeList] = useState({
@@ -18,7 +17,7 @@ const Dashboard = () => {
     summery: "",
     experience: [],
     education: [],
-    skills:[]
+    skills: [],
   });
   const [isLoading, setisLoading] = useState(true);
   useEffect(() => {
@@ -29,6 +28,7 @@ const Dashboard = () => {
     GlobalApi.GetUserResume(user?.primaryEmailAddress?.emailAddress)
       .then((res) => {
         setresumeList(res.data.data);
+        setisLoading(false);
       })
       .finally(setisLoading(false));
   };
@@ -37,12 +37,18 @@ const Dashboard = () => {
     <div className="p-10 md:px-20 lg:px-32 ">
       <h2 className="text-3xl font-bold mb-4">Dashboard</h2>
       <p>Generate a new resume for your next job role</p>
-      <div className="grid md:grid-cols-4 grid-cols-2 my-7 gap-x-2">
+      <div className="grid md:grid-cols-4 grid-cols-2 my-7 gap-x-2 items-center ">
         <AddResume />
 
         {resumeList.length > 0 &&
           resumeList.map((resume, index) => {
-            return <ResumeCartItem key={resume.id} resume={resume} refreshData={GetUserResumeList} />;
+            return (
+              <ResumeCartItem
+                key={resume.id}
+                resume={resume}
+                refreshData={GetUserResumeList}
+              />
+            );
           })}
       </div>
     </div>
