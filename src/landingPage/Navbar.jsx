@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center bg-primary py-5 top-0 fixed z-20`}
+      className={`${styles.paddingX} w-full flex items-center bg-primary py-5 top-0 fixed z-20 `}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
@@ -25,8 +25,8 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt="logo" className="w-9 object-contain" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex ">
-            AI &nbsp;
+          <p className="text-white text-[18px] font-bold cursor-pointer flex mr-1  ">
+            AI 
             <span className="sm:block hidden"> Resume Builder</span>
           </p>
         </Link>
