@@ -9,17 +9,17 @@ import { ResumePreview } from "../../components/ResumePreview";
 import dummydata from "../../data/dummydata";
 
 const EditResume = () => {
-  const {resumeid} = useParams();
+  const { resumeid } = useParams();
   const [resumeInfo, setresumeInfo] = useState();
   const [data, setdata] = useState([]);
   const { user } = useUser();
-const GetResumeInfo=()=>{
-  GlobalApi.GetResumeById(resumeid).then((res)=>{
-    setresumeInfo(res.data.data)
-  })
-}
+  const GetResumeInfo = () => {
+    GlobalApi.GetResumeById(resumeid).then((res) => {
+      setresumeInfo(res.data.data);
+    });
+  };
   useEffect(() => {
-GetResumeInfo()
+    GetResumeInfo();
   }, []);
   return (
     <ResumeInfoContext.Provider value={{ resumeInfo, setresumeInfo }}>
